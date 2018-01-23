@@ -12,14 +12,13 @@ pipeline {
                 echo 'Testing..'
             }
         }
-        stage('Deploy') {
-            input "Deploy?"
-             milestone()
-             lock('Deployment') {
-            node {
-                echo "Deploying"
-                }
-             }
+       stage('Deploy') {
+         input "Deploy?"
+         milestone()
+         lock('Deployment') {
+         steps {
+             echo "Deploying"
+           }
         }
     }
 }
