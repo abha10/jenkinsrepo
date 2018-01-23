@@ -13,9 +13,13 @@ pipeline {
             }
         }
         stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
+            input "Deploy?"
+             milestone()
+             lock('Deployment') {
+            node {
+                echo "Deploying"
+                }
+             }
         }
     }
 }
