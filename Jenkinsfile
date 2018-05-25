@@ -12,11 +12,9 @@ pipeline {
             }
         }
        stage('Deploy') {
-         lock('Deployment') {
-         steps {
+          steps {
              echo "Deploying"
            }
         }
-    }
   }
 }
