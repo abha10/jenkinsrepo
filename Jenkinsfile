@@ -1,6 +1,6 @@
 node {
     
-    stages {
+    
         stage('Build') {
             steps {
                 echo 'Building..'
@@ -19,5 +19,5 @@ node {
               println("Content: "+response.content)
            }
         }
-  }
+  
 }
