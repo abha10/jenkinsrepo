@@ -12,8 +12,6 @@ pipeline {
             }
         }
        stage('Deploy') {
-         input "Deploy?"
-         milestone()
          lock('Deployment') {
          steps {
              echo "Deploying"
