@@ -18,7 +18,7 @@ node {
              //def response = httpRequest consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', httpMode: 'POST', ignoreSslErrors: true, requestBody: '{"status":"failure","request-item-id":"${params.Request-Item-ID}"}', url: 'https://dev39754.service-now.com/api/190726/snow_jenkins'
            //echo "${params.Request_ID}";
 
-           def response = httpRequest consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', httpMode: 'POST', ignoreSslErrors: true, requestBody:'''+"${params.Request_ID}"+''', url: 'https://dev39754.service-now.com/api/190726/snow_jenkins'  
+           def response = httpRequest consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', httpMode: 'POST', ignoreSslErrors: true, requestBody:${params.Request_ID}, url: 'https://dev39754.service-now.com/api/190726/snow_jenkins'  
            //println("Status: "+response.status)
   //            println("Content: "+response.content)
            }
