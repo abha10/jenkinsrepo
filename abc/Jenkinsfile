@@ -12,7 +12,7 @@ pipeline {
             echo "abnc"
             
            // def response = httpRequest consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', httpMode: 'POST', ignoreSslErrors: true, url: 'https://dev39754.service-now.com/api/190726/snow_jenkins'
-              httpRequest httpMode: 'POST', ignoreSslErrors: true, responseHandle: 'NONE', url: 'https://dev39754.service-now.com/api/190726/snow_jenkins?status=Failure&request_item_number=RITM0010016&job_name=snow-rbs-v1&build_number=23'
+           httpRequest consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', httpMode: 'POST', ignoreSslErrors: true, url: 'https://dev39754.service-now.com/api/190726/snow_jenkins?status=Success&request_item_number=43856483&job_name=abc&build_number=23' 
             
         }
         failure {
