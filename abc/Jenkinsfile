@@ -10,10 +10,10 @@ pipeline {
     post {
         always {
             echo "abnc"
-            steps{
+            
            // def response = httpRequest consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', httpMode: 'POST', ignoreSslErrors: true, url: 'https://dev39754.service-now.com/api/190726/snow_jenkins'
               httpRequest httpMode: 'POST', ignoreSslErrors: true, responseHandle: 'NONE', url: 'https://dev39754.service-now.com/api/190726/snow_jenkins'
-            }
+            
         }
         failure {
             echo "Pqr"
