@@ -9,9 +9,8 @@ pipeline {
     }
     post {
         always {
-            echo "abnc"
-            echo "${params.request_item_number}"
-          httpRequest contentType: 'APPLICATION_JSON', httpMode: 'POST', ignoreSslErrors: true, requestBody: '${params.request_item_number}', url: 'https://dev39754.service-now.com/api/190726/snow_jenkins?test=' + "${params.request_item_number}" 
+                 
+          httpRequest contentType: 'APPLICATION_JSON', httpMode: 'POST', ignoreSslErrors: true, requestBody: '${params.request_item_number}', url: 'https://dev39754.service-now.com/api/190726/snow_jenkins?status=' +"${BUILD_STATUS}" +'&request_item_number='+ "${params.request_item_number}"+'&job_name='+"&{JOB_NAME}"+'&build_number='+"{BUILD_NUMBER}"  
   
            // def response = httpRequest consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', httpMode: 'POST', ignoreSslErrors: true, url: 'https://dev39754.service-now.com/api/190726/snow_jenkins'
         //   httpRequest consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', httpMode: 'POST', ignoreSslErrors: true, url: 'https://dev39754.service-now.com/api/190726/snow_jenkins?status=Failuer&request_item_number="${params.request_item_number}"&job_name="${JOB_NAME}"&build_number=23' 
