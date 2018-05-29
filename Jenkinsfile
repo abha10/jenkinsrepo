@@ -27,13 +27,7 @@ node {
            def response = httpRequest consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', httpMode: 'POST', ignoreSslErrors: true, url: 'https://dev39754.service-now.com/api/190726/snow_jenkins'
            //println("Status: "+response.status)
   //            println("Content: "+response.content)
-             try {
-        // do something that fails
-        sh "exit 1"
-        currentBuild.result = 'SUCCESS'
-    } catch (Exception err) {
-        currentBuild.result = 'FAILURE'
-    }
+
     echo "RESULT: ${currentBuild.result}"
            
            }
