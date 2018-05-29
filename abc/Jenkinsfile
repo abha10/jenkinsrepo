@@ -1,10 +1,11 @@
 pipeline {
  agent any
+	environment { test_result = ""}
  stages {
    stage('Test') {
      steps {
 	script{
-	   def test_result;
+	   
 	   if("${params.request_item_number}"){
 	   test_result = "success";
 	  }
