@@ -28,7 +28,7 @@ node {
            //println("Status: "+response.status)
   //            println("Content: "+response.content)
 
-    echo "RESULT: ${currentBuild.result}"
+    echo "RESULT: ${params.job_name.currentBuild.result}"
            
            }
         
