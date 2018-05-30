@@ -1,7 +1,9 @@
-node {
-    
-    
-        stage('Build') {
+
+def err = null
+try {
+    node {
+        // Main pipeline code goes here
+         stage('Build') {
             
                 echo 'Building..'
             
@@ -11,26 +13,19 @@ node {
                 echo 'Testing..'
             
         }
-       stage('Deploy') {
-          
-             echo "Deploying"
-              //def response = httpRequest consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', httpMode: 'POST', ignoreSslErrors: true, url: 'https://dev39754.service-now.com/api/190726/snow_jenkins'
-             //def response = httpRequest consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', httpMode: 'POST', ignoreSslErrors: true, requestBody: '{"status":"failure","request-item-id":"${params.Request-Item-ID}"}', url: 'https://dev39754.service-now.com/api/190726/snow_jenkins'
-           echo "${params.Request_Item_Number}";
-           echo "${params.status}";
-           echo "${params.job_name}";
-         //  def jobBuild =  "${params.job_name}";
-         //echo jobBuild.getResult()
-           echo "${params.build_number}";
-         //  def response = httpRequest consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', httpMode: 'POST', ignoreSslErrors: true, requestBody:"${params.Request_Item_Number}", url: 'https://dev39754.service-now.com/api/190726/snow_jenkins'  
-           //   def response = httpRequest consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', httpMode: 'POST', ignoreSslErrors: true, url: 'https://dev39754.service-now.com/api/190726/snow_jenkins?status=${BUILD_STATUS}&request_item_number=${params.Request_Item_Number}&job_name=${JOB_NAME}&build_number=${BUILD_NUMBER}'  
-           def response = httpRequest consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', httpMode: 'POST', ignoreSslErrors: true, url: 'https://dev39754.service-now.com/api/190726/snow_jenkins'
-           //println("Status: "+response.status)
-  //            println("Content: "+response.content)
-
-    //echo "RESULT: ${params.job_name.currentBuild.result}"
-           
-           }
-        
-  
+    }
+} catch (caughtError) { //End of Try
+    err = caughtError
+    currentBuild.result = "FAILURE"
+} finally {
+    (currentBuild.result != "ABORTED") && node("master") {
+        // Send e-mail notifications for failed or unstable builds.
+        // currentBuild.result must be non-null for this step to work.
+        step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: emailextrecipients([[$class: 'CulpritsRecipientProvider'], [$class: 'RequesterRecipientProvider']])])
+<pre><code data-language="generic">    /* Must re-throw exception to propagate error */
+    if (err) {
+        throw err
+    }
 }
+</code></pre>
+}<br>
