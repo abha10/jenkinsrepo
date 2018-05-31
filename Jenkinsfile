@@ -4,15 +4,11 @@ try {
     node {
         // Main pipeline code goes here
          stage('Build') {
-            
                 echo 'Building..'
-            
         }
         stage('Test') {
-            
                 echo 'Testing..'
-            
-        }
+         }
     }
 } catch (caughtError) { //End of Try
     err = caughtError
